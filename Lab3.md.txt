@@ -1,0 +1,8 @@
+#
+#	Lab oppgave 3
+#	
+#	Authors:	Ola Mathiesen
+#				Viktor Setervang
+#				Michael Desmound
+#				Tord Lindaas
+#
