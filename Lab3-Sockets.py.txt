@@ -6,3 +6,5 @@
 #	Michael Desmound
 #	Tord Lindaas
 #
+def ola:
+pass
