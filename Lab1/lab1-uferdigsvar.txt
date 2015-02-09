@@ -1,0 +1,16 @@
+
+2. 
+Ones complement er definert verdien man får når man inverterer alle bitsene i en binær representasjon av et nummer.
+0 blir til 1, 1 blir til 0. 10101 -> 01010. Dette gjøres med en logisk operasjon med et annet tall, en såkalt mask.
+
+binært nummer + operatør mask = ones complement
+10101 ^ 1 = 01010
+
+Ones complement oppfører seg med andre ord som en negativ representasjon av de orginale tallet.
+
+3.
+I python så blir pass sett på som en null erklæring, pass blir ikke ignorert, men siden en loop eller funksjons body ikke kan være tom, 
+så blir pass stort sett brukt som en placeholder i en loop eller funksjon som ikke er implementert enda.
+
+4. Reservert til etter sammenslåing av kode.
+Finn ut hva hver eneste linje av kode betyr og beskriv det i besvarelsen
