@@ -61,29 +61,29 @@ def choices():
         else:
             print "pick an option 1-6, type q to quit the program"
 
-    __chosen_procedure__(answer)
+    _chosen_procedure(answer)
 #
 #   This function checks the answer the user gave and sends him to the function
 #   of choice.
 #
-def __chosen_procedure__(answer):
+def _chosen_procedure(answer):
 
     if answer == "1":
-        __lowercase_to_uppercase__(answer)
+        _lowercase_to_uppercase(answer)
 
     if answer == "2":
-        __decimal_to_roman__(answer)
+        _decimal_to_roman(answer)
 
     if answer == "3":
-        __roman_to_decimal__(answer)
+        _roman_to_decimal(answer)
 
     if answer == "4" or "5" or "6":
-        __roman_math__(answer)
+        _roman_math(answer)
 #
 #   The function that handles the request to turn lowercase words to uppercase
 #   words.
 #
-def __lowercase_to_uppercase__(answer):
+def _lowercase_to_uppercase(answer):
 
     lowercase = False
     while lowercase == False:
@@ -98,7 +98,7 @@ def __lowercase_to_uppercase__(answer):
 #   The function that handles the request to turn decimal numbers to roman
 #   numerals.
 #
-def __decimal_to_roman__(answer):
+def _decimal_to_roman(answer):
 
     valid_answer = False
     while valid_answer == False:
@@ -113,7 +113,7 @@ def __decimal_to_roman__(answer):
 #   The function that handles the request to turn roman numerals into decimal
 #   numbers.
 #
-def __roman_to_decimal__(answer):
+def _roman_to_decimal(answer):
 
     valid_answer = False
     while valid_answer == False:
@@ -128,7 +128,7 @@ def __roman_to_decimal__(answer):
 #   The function that handles requests to either add, subtract or multiply
 #   with roman numerals.
 #
-def __roman_math__(answer):
+def _roman_math(answer):
 
     if answer == "4":
         math = "add"
@@ -146,7 +146,7 @@ def __roman_math__(answer):
 
         message = raw_input('Use this form "XL@IV":  ')
         if (re.match(r"^[IVXLCDM@]*$", message)):
-            tmpmessage = __test_if_two__(message)
+            tmpmessage = _test_if_two(message)
             if (re.match(r"^[IVXLCDM]*$", tmpmessage)):
                 valid_answer = True
         else:
@@ -158,7 +158,7 @@ def __roman_math__(answer):
 #   String is split in two. If its split in two it will concenate strings
 #   and send them back to the function for a last validity test.
 #
-def __test_if_two__(string):
+def _test_if_two(string):
     string = string.split("@")
 
     if len(string) != 2:
