@@ -2,7 +2,7 @@
 
 #
 #   Imports the module socket and imports our custom made is105roman,
-#   which handles roman numerals.  
+#   which handles roman numerals.
 #
 from socket import *
 import is105roman
@@ -34,7 +34,7 @@ def server():
         message = string[1]
 
         if answer == "1":
-            modifiedMessage = __ans_1__(message)
+            modifiedMessage = _ans_1(message)
             print clientAddress
             serverSocket.sendto(modifiedMessage.encode("utf-8"), clientAddress)
 
@@ -73,12 +73,12 @@ def server():
 #
 #   The main function for handling conversion from lower to upper case.
 #
-def __ans_1__(message):
+def _ans_1(message):
     message = message.decode("utf-8")
 
     modifiedMessage = ""
     for i in message:
-        modifiedMessage = modifiedMessage + __lower_to_upper_case__(i)
+        modifiedMessage = modifiedMessage + _lower_to_upper_case(i)
 
     encodedMessage = modifiedMessage.encode("utf-8")
 
@@ -90,7 +90,7 @@ def __ans_1__(message):
 #   Help function for the __ans_1__ function, this function does the
 #   actuall convertion from lower to upper case.
 #
-def __lower_to_upper_case__(char):
+def _lower_to_upper_case(char):
     lower = bin(ord(char))
     mask = bin(32)
     upper = int(lower,2) ^ int(mask,2)
