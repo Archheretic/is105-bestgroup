@@ -52,7 +52,7 @@ def decimal_to_roman(int1):
             roman += "I"
             int1 -= 1
 
-    return __subtractive_form__(roman)
+    return _subtractive_form(roman)
 #
 #   This function is for converting a roman number to a decimal number.
 #   The function uses checks that the roman number (string) is valid.
@@ -63,9 +63,9 @@ def decimal_to_roman(int1):
 def roman_to_decimal(string):
     decimal = 0
     try:
-        fixSubtractives = __unsubtractive_form__(string)
+        fixSubtractives = _unsubtractive_form(string)
         for c in fixSubtractives:
-            decimal += __roman_numerals_value__(c)
+            decimal += _roman_numerals_value(c)
         return decimal
     except KeyError:
         print "Not a valid input, only roman numerals allowed"
@@ -77,10 +77,10 @@ def roman_to_decimal(string):
 #   subtract the string VIIII -> IX and returns the answer.
 #
 def roman_add(string1, string2):
-    numerals1 = str(__unsubtractive_form__(string1))
-    numerals2 = str(__unsubtractive_form__(string2))
+    numerals1 = str(_unsubtractive_form(string1))
+    numerals2 = str(_unsubtractive_form(string2))
     unsortedAnswer = numerals1 + numerals2
-    finalAnswer = __subtractive_form__(unsortedAnswer)
+    finalAnswer = _subtractive_form(unsortedAnswer)
     return finalAnswer
 #
 #   This function subtracts the roman number "y" from the roman number "x".
@@ -97,8 +97,8 @@ def roman_sub(x, y):
         print "Illegal values, roman numbers can only be positive!"
         return "Illegal values, roman numbers can only bCDDCe positive!"
 
-    left1 = str(__unsubtractive_form__(x))
-    right1 = str(__unsubtractive_form__(y))
+    left1 = str(_unsubtractive_form(x))
+    right1 = str(_unsubtractive_form(y))
     left2 = left1
     right2 = right1
 
@@ -110,8 +110,8 @@ def roman_sub(x, y):
             right2 = right2.replace(e,'',1)
             i = i + 1
 
-    left1 = __downgrade_numerals__(left2)
-    right1 = __downgrade_numerals__(right2)
+    left1 = _downgrade_numerals(left2)
+    right1 = _downgrade_numerals(right2)
     left2 = left1
     right2 = right1
 
@@ -121,7 +121,7 @@ def roman_sub(x, y):
         right2 = right2.replace("I",'',1)
         i = i + 1
 
-    answer = __subtractive_form__(left2)
+    answer = _subtractive_form(left2)
 
     if len(answer) == 0:
         answer = ("The romans don't have any numerals for zero, they have only "
@@ -139,10 +139,10 @@ def roman_sub(x, y):
 def roman_mult(x, y):
     x2 = x
     y2 = y
-    x = __unsubtractive_form__(x)
-    y = __unsubtractive_form__(y)
-    x = __downgrade_numerals__(x)
-    y = __downgrade_numerals__(y)
+    x = _unsubtractive_form(x)
+    y = _unsubtractive_form(y)
+    x = _downgrade_numerals(x)
+    y = _downgrade_numerals(y)
 
     answer = ""
     while True:
@@ -150,10 +150,10 @@ def roman_mult(x, y):
             break
         if len(x) % 2 != 0:
             answer = answer + y
-        x = __split_string__(x)
-        y = __double_string__(y)
+        x = _split_string(x)
+        y = _double_string(y)
 
-    answer = __subtractive_form__(answer)
+    answer = _subtractive_form(answer)
 
 
     if decimal_to_roman((roman_to_decimal(x2)*roman_to_decimal(y2))) != answer:
@@ -165,7 +165,7 @@ def roman_mult(x, y):
 #   Help function with a dictionary that translates the value of roman
 #   numeral into the decimal system.
 #
-def __roman_numerals_value__(numeral):
+def _roman_numerals_value(numeral):
     romanNumerals = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500,
                      "M": 1000}
     return romanNumerals[numeral]
@@ -174,7 +174,7 @@ def __roman_numerals_value__(numeral):
 #   String, the other parameter is a dictionary. The function replaces the
 #   characters in the string with the respective value in the dictionary
 #
-def __uni_sort__(string, howToSort):
+def _uni_sort(string, howToSort):
     for i, j in howToSort.iteritems():
         string = string.replace(i, j)
     return string
@@ -183,32 +183,32 @@ def __uni_sort__(string, howToSort):
 #   It uses a regular expression to confirm that the string only contains the
 #   roman character I.
 #
-def __downgrade_numerals__(numeral):
+def _downgrade_numerals(numeral):
     table = {"M": "DD", "D": "CCCCC", "C": "LL", "L": "XXXXX", "X": "VV",
              "V": "IIIII"}
     while True:
         if re.match(r"^[I]*$", numeral):
             return numeral
         else:
-            numeral = __uni_sort__(numeral, table)
+            numeral = _uni_sort(numeral, table)
 #
 #   Help function that splits a string, and returns the first part of the string
 #   If len(string) == odd number, it will count as an integer division and the
 #   remains will be lost.
 #
-def __split_string__(string):
+def _split_string(string):
     half = len(string)/2
     return string[:half]
 #
 #   Help function that adds a string to the same string.
 #
-def __double_string__(string):
+def _double_string(string):
     string = string + string
     return string
 #
 #   Help function to sort a roman number after the numerals value.
 #
-def __sort_order__(x):
+def _sort_order(x):
     valueOrder = "MDCLXVI"
     sortingList = sorted(x, key=valueOrder.index)
     sort = ""
@@ -219,40 +219,40 @@ def __sort_order__(x):
 #   Help function that turns a roman number into its unsubtractive
 #   form (CL -> LXXXX).
 #
-def __unsubtractive_form__(x):
+def _unsubtractive_form(x):
     table = {"IV": "IIII", "IX": "VIIII", "XL": "XXXX", "XC": "LXXXX",
              "CD": "CCCC", "CM": "DCCCC"}
-    sort = __uni_sort__(x, table)
+    sort = _uni_sort(x, table)
     test = ""
     while test != sort:
         test = sort
-        sort = __uni_sort__(sort, table)
+        sort = _uni_sort(sort, table)
     return sort
 #
 #   Help function that turns a roman number into its subtractive
 #   form (XXXXX -> L ).
 #
-def __subtractive_form__(x):
+def _subtractive_form(x):
     table = {"IIIII": "V", "VV": "X", "XXXXX": "L", "LL": "C", "CCCCC": "D",
              "DD": "M"}
     table2 = {"IIII": "IV", "VIV": "IX", "VIIII": "IX", "XXXX": "XL",
               "LXXXX": "XC", "CCCC": "CD", "DCCCC": "CM"}
 
-    sort = __sort_order__(x)
+    sort = _sort_order(x)
     test = ""
     while test != sort:
         test = sort
-        sort = __uni_sort__(sort, table)
+        sort = _uni_sort(sort, table)
 
     test = ""
     while test !=sort:
         test = sort
-        sort = __uni_sort__(sort, table2)
+        sort = _uni_sort(sort, table2)
     return sort
 #
 #   A function that asserts that all the main functions are working correctly.
 #
-def __test__():
+def _test():
     assert decimal_to_roman(2444) == "MMCDXLIV"
     assert decimal_to_roman(1337) == "MCCCXXXVII"
     assert roman_to_decimal("MMCDXLIV") == 2444
@@ -269,4 +269,4 @@ def __test__():
 #   Long as this module is the main module (not imported).
 #
 if __name__ == '__main__':
-    print __test__()
+    print _test()
