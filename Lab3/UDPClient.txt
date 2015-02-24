@@ -1,0 +1,4 @@
+It now supports the use of the is105roman module.
+One important thing to notice is that it uses 127.0.0.1 as IP, which basicly is the loop back address to your own machine, we could perhaps change this so that it operates on use input instead. 
+
+A thing we might have to fix is that our regex only allows øæå, and none of the other unicode letters. 
