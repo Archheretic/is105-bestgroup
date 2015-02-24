@@ -49,12 +49,8 @@ def card_ranks(cards):
                  "9": 9, "T": 10, "J": 11, "Q": 12, "K": 13, "A": 14}
 
     ranks = list()
-
     for card in cards:
-        for r in card:
-            if (re.match(r"^[2-9TJQKA]*$", r)):
-                ranks.append(card_rank[r])
-
+        ranks.append(card_rank[card[0]])
     #tuple(ranks)
     ranks.sort(reverse=True)
     return ranks
@@ -73,11 +69,9 @@ def straight(ranks):
 #
 def flush(hand):
 
-    suits = ""
+    suits = list()
     for card in hand:
-        for s in card:
-            if (re.match(r"^[CDHS]*$", s)):
-                suits = suits + s
+        suits.append(card[1])
 
     if len(set(suits)) == 1:
         return True
