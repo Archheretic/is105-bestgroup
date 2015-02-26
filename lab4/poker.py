@@ -125,9 +125,6 @@ def two_pair(ranks):
 
     if len(set(ranks)) == 3 and kind(3, ranks) == None:
         return True
-    else:
-        return None
-
 
 
 #
