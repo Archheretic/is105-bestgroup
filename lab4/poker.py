@@ -112,8 +112,7 @@ def kind(n, ranks):
     return None
     
 def two_pair(ranks):
-    if len(set(ranks)) == 3 and kind(3, ranks) == None:
-        return True
+    return len(set(ranks)) == 3 and kind(3, ranks) == None
 #
 # If there are two pair, return the two ranks as a
 # tuple: (highest, lowest); otherwise return None.
@@ -156,7 +155,7 @@ def test():
     assert kind(2, fkranks) == None
     assert kind(1, fkranks) == 7
 
-    assert two_pair(fkranks) == None
+    assert two_pair(fkranks) == False
     assert two_pair(tpranks) == True
     #assert two_pair(tpranks) == (9, 5)
 
