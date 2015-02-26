@@ -1,11 +1,21 @@
-import re
 
+import random
+
+
+def deal(numhands, n = 5, deck=[r+s for r in "23456789TJQKA" for s in "SHDC"]):
+    "Shuffle the deck and deal out numhands n-card hands."
+    random.shuffle(deck)
+    winner = poker([deck[n*i:n*(i+1)] for i in range(numhands)])
+#    print "The winner is!"
+#    print winner
 #hand 5 cards. rank and a suit
 
 #
 #   returns the best hand: poker([hand,...]) => hand"
 #
 def poker(hands):
+#    print hands
+#    print ""
     return max(hands, key=hand_rank)
 
 
@@ -64,6 +74,11 @@ def straight(ranks):
         return True
     else:
         return False
+
+
+def straight_udacity(ranks):
+    "Return True if the ordered ranks form a 5-card straight."
+    return sum(ranks) - min(ranks)*5 == 10
 #
 # Return True if all the cards have the same suit."
 #
@@ -78,8 +93,10 @@ def flush(hand):
     else:
         return False
 
-
-
+def flush_udacity(hand):
+    "Return True if all the cards have the same suit."
+    suits = [s for r, s in hand]
+    return len(set(suits)) == 1
 #
 # Return the first rank that this hand has exactly n of.
 # Return None if there is no n-of-a-kind in the hand.
@@ -90,17 +107,25 @@ def kind(n, ranks):
         if ranks.count(r) == n:
             return r
     return None
-
-
-
-
-
 #
 # If there are two pair, return the two ranks as a
 # tuple: (highest, lowest); otherwise return None.
 #
 def two_pair(ranks):
-    pass
+    if kind(2, ranks) == kind(2, list(reversed(ranks))):
+        return None
+
+    else:
+        return (kind(2, ranks), kind(2, list(reversed(ranks))))
+
+def two_pairTest(ranks):
+
+    if len(set(ranks)) == 3 and kind(3, ranks) == None:
+        return (kind(2, ranks), kind(2, list(reversed(ranks))))
+        #return True
+    else:
+        return None
+
 
 
 #
@@ -128,8 +153,8 @@ def test():
     assert kind(2, fkranks) == None
     assert kind(1, fkranks) == 7
 
-    #assert two_pair(fkranks) == None
-    #assert two_pair(tpranks) == (9, 5)
+    assert two_pair(fkranks) == None
+    assert two_pair(tpranks) == (9, 5)
 
     # assert straight(sf) == True
     # assert straight(s1) == True
@@ -159,3 +184,10 @@ def test():
     return "tests pass"
 
 print test()
+
+# if __name__ == '__main__':
+#     import timeit
+#     print(timeit.timeit("straight([9, 8, 7, 6, 5])", setup="from __main__ import straight"))
+#     print(timeit.timeit("straight_udacity([9, 8, 7, 6, 5])", setup="from __main__ import straight_udacity"))
+#     print(timeit.timeit("flush('6C 7C 8C 9C TC'.split())", setup="from __main__ import flush"))
+#     print(timeit.timeit("flush_udacity('6C 7C 8C 9C TC'.split())", setup="from __main__ import flush_udacity"))
