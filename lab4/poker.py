@@ -66,6 +66,9 @@ def card_ranks(cards):
         ranks.append(card_rank[card[0]])
     #tuple(ranks)
     ranks.sort(reverse=True)
+    # The wheel
+    if ranks == [14, 5, 4, 3, 2]:
+        ranks = [5, 4, 3, 2, 1]
     return ranks
 #
 # Return True if the ordered ranks form a 5-card straight.
