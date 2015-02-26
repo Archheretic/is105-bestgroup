@@ -110,23 +110,27 @@ def kind(n, ranks):
         if ranks.count(r) == n:
             return r
     return None
+    
+def two_pair(ranks):
+    if len(set(ranks)) == 3 and kind(3, ranks) == None:
+        return True
 #
 # If there are two pair, return the two ranks as a
 # tuple: (highest, lowest); otherwise return None.
 #
-# def two_pair(ranks):
-#     if kind(2, ranks) == kind(2, list(reversed(ranks))):
-#         return None
-#
-#     else:
-#         return (kind(2, ranks), kind(2, list(reversed(ranks))))
+def two_pair2(ranks):
+    if kind(2, ranks) == kind(2, list(reversed(ranks))):
+        return None
 
-def two_pair(ranks):
+    else:
+        return (kind(2, ranks), kind(2, list(reversed(ranks))))
 
-    if len(set(ranks)) == 3 and kind(3, ranks) == None:
-        return True
-
-
+def two_pair_udacity(ranks):
+    """If there are two pair, return the two ranks as a
+    tuple: (highest, lowest); otherwise return None."""
+    result = [r for r in set(ranks) if ranks.count(r) == 2]
+    if len(result) == 2:
+        return (max(result), min(result))
 #
 # Test cases for the functions in poker program.
 #
@@ -183,11 +187,14 @@ def test():
 
     return "tests pass"
 
-print test()
+#print test()
 
-# if __name__ == '__main__':
-#     import timeit
-#     print(timeit.timeit("straight([9, 8, 7, 6, 5])", setup="from __main__ import straight"))
-#     print(timeit.timeit("straight_udacity([9, 8, 7, 6, 5])", setup="from __main__ import straight_udacity"))
-#     print(timeit.timeit("flush('6C 7C 8C 9C TC'.split())", setup="from __main__ import flush"))
-#     print(timeit.timeit("flush_udacity('6C 7C 8C 9C TC'.split())", setup="from __main__ import flush_udacity"))
+if __name__ == '__main__':
+    import timeit
+    print(timeit.timeit("straight([9, 8, 7, 6, 5])", setup="from __main__ import straight"))
+    print(timeit.timeit("straight_udacity([9, 8, 7, 6, 5])", setup="from __main__ import straight_udacity"))
+    print(timeit.timeit("flush('6C 7C 8C 9C TC'.split())", setup="from __main__ import flush"))
+    print(timeit.timeit("flush_udacity('6C 7C 8C 9C TC'.split())", setup="from __main__ import flush_udacity"))
+    print(timeit.timeit("two_pair([9, 9, 5, 5, 2])", setup="from __main__ import two_pair"))
+    print(timeit.timeit("two_pair2([9, 9, 5, 5, 2])", setup="from __main__ import two_pair2"))
+    print(timeit.timeit("two_pair_udacity([9, 9, 5, 5, 2])", setup="from __main__ import two_pair_udacity"))
