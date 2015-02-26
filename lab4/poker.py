@@ -42,8 +42,11 @@ def hand_rank(hand):
     elif kind(3, ranks):
         return (3, kind(3, ranks), ranks)
 
+    # elif two_pair(ranks):
+    #     return (2, two_pair(ranks), ranks)
+
     elif two_pair(ranks):
-        return (2, two_pair(ranks), ranks)
+        return (2, kind(2, ranks), kind(2, list(reversed(ranks))), ranks)
 
     elif kind(2, ranks):
         return (1, kind(2, ranks), ranks)
@@ -111,18 +114,17 @@ def kind(n, ranks):
 # If there are two pair, return the two ranks as a
 # tuple: (highest, lowest); otherwise return None.
 #
+# def two_pair(ranks):
+#     if kind(2, ranks) == kind(2, list(reversed(ranks))):
+#         return None
+#
+#     else:
+#         return (kind(2, ranks), kind(2, list(reversed(ranks))))
+
 def two_pair(ranks):
-    if kind(2, ranks) == kind(2, list(reversed(ranks))):
-        return None
-
-    else:
-        return (kind(2, ranks), kind(2, list(reversed(ranks))))
-
-def two_pairTest(ranks):
 
     if len(set(ranks)) == 3 and kind(3, ranks) == None:
-        return (kind(2, ranks), kind(2, list(reversed(ranks))))
-        #return True
+        return True
     else:
         return None
 
@@ -154,7 +156,8 @@ def test():
     assert kind(1, fkranks) == 7
 
     assert two_pair(fkranks) == None
-    assert two_pair(tpranks) == (9, 5)
+    assert two_pair(tpranks) == True
+    #assert two_pair(tpranks) == (9, 5)
 
     # assert straight(sf) == True
     # assert straight(s1) == True
