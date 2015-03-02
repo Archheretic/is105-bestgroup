@@ -53,7 +53,7 @@ def choices():
     valid_answer = False
     while valid_answer == False:
         answer = raw_input("I choose option: ")
-        if (re.match(r"^[1-6]*$", answer)):
+        if (re.match(r"^[1-6]*$", answer) and len(answer) == 1):
             valid_answer = True
         elif (re.match(r"^[qQ]*$", answer)):
             print "Goodbye!"
@@ -88,10 +88,10 @@ def _lowercase_to_uppercase(answer):
     lowercase = False
     while lowercase == False:
         message = raw_input("Input lowercase sentence: ")
-        if (re.match(r"^[a-zæ-å]*$", message)):
+        if (re.match(r"^[a-zà-ÿ]*$", message)):
             lowercase = True
         else:
-            print "Only the lowercase letters a-å are allowed"
+            print "Only the lowercase letters a-z and à-ÿ (æ-å) are allowed"
 
     client(answer, message)
 #
