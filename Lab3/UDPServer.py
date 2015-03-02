@@ -6,6 +6,7 @@
 #
 from socket import *
 import is105roman
+import LowerToUpper
 #
 #   This is the server module
 #   serverSocket : AF_INET tells that the adressfamily is IPv4
@@ -34,7 +35,7 @@ def server():
         message = string[1]
 
         if answer == "1":
-            modifiedMessage = _ans_1(message)
+            modifiedMessage = LowerToUpper.bit_flip(message)
             print clientAddress
             serverSocket.sendto(modifiedMessage.encode("utf-8"), clientAddress)
 
@@ -73,30 +74,5 @@ def server():
 #
 #   The main function for handling conversion from lower to upper case.
 #
-def _ans_1(message):
-    message = message.decode("utf-8")
-
-    modifiedMessage = ""
-    for i in message:
-        modifiedMessage = modifiedMessage + _lower_to_upper_case(i)
-
-    encodedMessage = modifiedMessage.encode("utf-8")
-
-    print ("Transforms: " + message + " to uppercase: "
-           + modifiedMessage + " from client: ")
-
-    return modifiedMessage
-#
-#   Help function for the __ans_1__ function, this function does the
-#   actuall convertion from lower to upper case.
-#
-def _lower_to_upper_case(char):
-    lower = bin(ord(char))
-    mask = bin(32)
-    upper = int(lower,2) ^ int(mask,2)
-    upper = '{0:b}'.format(upper)
-    upper = unichr(int(upper,2))
-
-    return upper
 
 server()
