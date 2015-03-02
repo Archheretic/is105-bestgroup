@@ -5,14 +5,14 @@ def deal(numhands, n = 5, deck=[r+s for r in "23456789TJQKA" for s in "SHDC"]):
     "Shuffle the deck and deal out numhands n-card hands."
     random.shuffle(deck)
     winner = poker([deck[n*i:n*(i+1)] for i in range(numhands)])
-    #print "The winner is!"
-    #print winner
+    print "The winner is!"
+    print winner
 #
 #   returns the best hand: poker([hand,...]) => hand"
 #
 def poker(hands):
-    #print hands
-    #print ""
+    print hands
+    print ""
     return max(hands, key=hand_rank)
 #
 #
@@ -27,11 +27,13 @@ def hand_rank(hand):
 
     straight1 = straight(ranks)
     flush1 = flush(hand)
+
     return max(count_rankings[counts], 4*straight1 + 5*flush1), ranks
 #
 #
 #
-def unzip(pairs): return zip(*pairs)
+def unzip(pairs):
+    return zip(*pairs)
 #
 #
 #
@@ -57,11 +59,12 @@ def card_ranks(cards):
 # Return True if the ordered ranks form a 5-card straight.
 #
 def straight(ranks):
+    for i in range(len(ranks)-1):
+        if ranks[i+1] != ranks[i]-1:
+            return False
+    return True
 
-    if (max(ranks)-min(ranks) == 4) and len(set(ranks)) == 5:
-        return True
-    else:
-        return False
+
 #
 # Return True if all the cards have the same suit."
 #
@@ -69,12 +72,9 @@ def flush(hand):
     suits = list()
     for card in hand:
         suits.append(card[1])
+    return len(set(suits)) == 1
 
-    if len(set(suits)) == 1:
-        return True
-    else:
-        return False
-#
+deal(10)
 #
 #  ABOVE THIS IS THE ARE THE MAIN FUNCTIONS OF THE PROGRAM.
 #  NOONE OF THE FUNCTIONS BELOW ARE NEEDED FOR THE PROGRAM TO RUN.
@@ -156,7 +156,6 @@ def test():
     return "tests pass"
 
 #print test()
-#deal(10)
 #
 #
 # Lots of unused code, some of it from udacity.
@@ -221,7 +220,7 @@ def two_pair_udacity_old(ranks):
 #     for x in set(items):
 #         groups.append((items.count(x), x))
 #     return sorted(groups, reverse=True)
-print test()
+#print test()
 
 # if __name__ == '__main__':
 #     import timeit
