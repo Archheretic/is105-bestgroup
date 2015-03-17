@@ -1,0 +1,31 @@
+Oppgave2:
+
+Hva er grunnleggende systeminformasjon for systemet som testene er blitt
+utført på (operativssystemet, distribusjon, informasjon om CPU type)? Se
+under for forslag hvordan man finner slik informasjon.)
+
+
+Informasjon om operativsystem og distribusjon fra psutils:
+
+['/home/archheretic/skole/is-105/lab2', '/usr/lib/python2.7', '/usr/lib/python2.7/plat-x86_64-linux-gnu', '/usr/lib/python2.7/lib-tk', '/usr/lib/python2.7/lib-old',
+ '/usr/lib/python2.7/lib-dynload', '/usr/local/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages/PILcompat',
+ '/usr/lib/python2.7/dist-packages/gtk-2.0', '/usr/lib/python2.7/dist-packages/ubuntu-sso-client']
+
+
+
+CPU informasjon fra command lshw i terminalen:
+CPU:
+product: Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz
+vendor: Intel Corp.
+physical id: 1
+bus info: cpu@0
+size: 800MHz
+capacity: 800MHz
+width: 64 bits
+capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall
+nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est
+tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb xsaveopt pln pts dtherm tpr_shadow 
+vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cpufreq
+
+psutils CPU speed:
+scputimes(user=47.5, nice=1.85, system=13.56, idle=3287.11, iowait=4.72, irq=0.0, softirq=0.04, steal=0.0, guest=0.0, guest_nice=0.0)
