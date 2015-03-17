@@ -1,0 +1,10 @@
+Oppgave 7 : 
+Burde dere bruke TCP protokollen for deres applikasjon i dette tilfelle?
+Forklar hvorfor, eventuelt hvorfor ikke:
+
+Svar:
+Å bruke TCP protokollen kunne egentlig være greit. 
+
+Ettersom oppgaven vil at vi skal sende romertall og gjøre disse om frem og tilbake så er det
+viktig at det ikke forekommer feil i pakkene som blir sendt. Derfor er det lurt å bruke TCP protokollen fordi der er det 
+"Error correction" og protokollen kan be om å få resendt pakkene om det er noe feil.
