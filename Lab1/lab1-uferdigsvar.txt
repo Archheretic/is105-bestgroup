@@ -1,3 +1,26 @@
+1. 
+
+Operatør prioritet bestemmer hvilke operasjoner som utføres først.
+Operatør i Python fra lav til høy prioritet (det på samme linje har lik prioritet og vil da utføres fra venstre til høyre):
+
+Operator							                  	Description
+lambda								                  	Lambda expression
+if – else							                        	Conditional expression
+or								                                    	Boolean OR
+and									                                  Boolean AND
+not x								                                        	Boolean NOT
+in, not in, is, is not, <, <=, >, >=, <>, !=, ==			Comparisons, including membership tests and identity tests
+|								                                        	Bitwise OR
+^								                                            	Bitwise XOR
+&									                                    Bitwise AND
+<<, >>								                              	Shifts
++, -									                                Addition and subtraction
+*, /, //, %							                                	                 Multiplication, division, remainder [8]
++x, -x, ~x							                                                	Positive, negative, bitwise NOT
+**							        	                                                 Exponentiation [9]
+x[index], x[index:index], x(arguments...), x.attribute			              Subscription, slicing, call, attribute reference
+(expressions...), [expressions...], {key: value...}, `expressions...`	    Binding or tuple display, list display, dictionary display, string conversion
+
 
 2. 
 Ones complement er definert verdien man får når man inverterer alle bitsene i en binær representasjon av et nummer.
