@@ -152,8 +152,9 @@ def deal(numhands, n = 5):
 # Return a list of winning hands: poker([hand,...]) => [hand,...]
 #
 def poker(hands):
-    #print hands
-    #print ""
+    print "Hands dealt:"
+    print hands
+    print ""
     return allmax(hands, key=hand_rank)
 #
 #
@@ -276,6 +277,11 @@ def test():
     ah = "AS 2S 3S 4S 6C".split()   # A high
     sh = "2S 3S 4S 6C 7D".split()   # 7 high
 
+#Hands used to test for winner when hands ties.
+    sf2 = "6D 7D 8D 9D TD".split()   # sf straight flush
+    fh2 = "TC TD TH 7S 7D".split()   # fh full house
+    fh3 = "TS TC 7C TH 7H".split()
+
 
     assert poker([s1, s2, ah, sh]) == [s2]
 
@@ -318,10 +324,15 @@ def test():
     assert poker([s1, s2, tp]) == [s2]
     assert poker([s1, s2, fh]) == [fh]
 
+
     assert hand_rank(sf) == (9, (10, 9, 8, 7, 6))
 
     assert hand_rank(fk) == (8, (9, 7))
     assert hand_rank(fh) == (7, (10, 7))
+
+#Test for who gets declared as winner when its a tie:
+    assert poker([tk, sf, sf2, ah]) == [sf, sf2]
+    assert poker([fh, ah, fh2, tp, fh3]) == [fh, fh2, fh3]
 
     return "tests passed! :)"
 #
@@ -411,7 +422,16 @@ def speedtest():
     print(timeit.timeit("two_pair_udacity_old([9, 9, 5, 5, 2])", setup="from __main__ import two_pair_udacity_old"))
     print "Udacitys refactored Two Pair:"
     print(timeit.timeit("two_pair_udacity([9, 9, 5, 5, 2])", setup="from __main__ import two_pair_udacity"))
-
+    print "\nAs you can see Udacitys Straigth is faster then our straight."
+    print ("The reason for this is that we use a for-loop, which can be \n"
+          + "considered slow, here every card is checked up against the next " +
+          "card\n(in a sorted hand) and this takes time. \nInstead of using a "
+          + "loop, udacity uses a smart mathematical formula.\n"
+          + "They use the function sum, which also iterates through the "
+          + "hand,\nbut they won't need to compare with every single card like"
+          + "our function needs.\n\nOur flush is faster then Udacities Flush.\n"
+          + "The reason for this is that they use a list comprehesion while"
+          + "\nwe use a simple for-loop.")
 
 if __name__ == '__main__':
     welcome()
