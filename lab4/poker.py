@@ -9,6 +9,8 @@ import random
 import time
 import re
 
+test = False
+
 def welcome():
 
     print ("\nWelcome to our poker program!\nWe got many options for you, " +
@@ -152,9 +154,12 @@ def deal(numhands, n = 5):
 # Return a list of winning hands: poker([hand,...]) => [hand,...]
 #
 def poker(hands):
-    print "Hands dealt:"
-    print hands
-    print ""
+    #These print statements will not be printed during tests
+    if test != True:
+        print "Hands dealt:"
+        print hands
+        print ""
+
     return allmax(hands, key=hand_rank)
 #
 #
@@ -282,6 +287,8 @@ def test():
     fh2 = "TC TD TH 7S 7D".split()   # fh full house
     fh3 = "TS TC 7C TH 7H".split()
 
+    global test
+    test = True
 
     assert poker([s1, s2, ah, sh]) == [s2]
 
