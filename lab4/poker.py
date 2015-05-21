@@ -3,7 +3,6 @@
 #             'student2': 'Ola Mathiesen', \
 #             'student3': 'Tord Resch Lindaas', \
 #             'student4': 'Michael Matthew Desmond', \
-#             'student4': 'Linus Weagba', \
 #          }
 #
 import random
